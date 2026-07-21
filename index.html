@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Camp AIR — Onboarding Office Hours</title>
+  <style>
+    :root {
+      --color-primary: #0078d4;
+      --color-primary-dark: #005a9e;
+      --color-primary-light: #deecf9;
+      --color-bg: #fafafa;
+      --color-surface: #fff;
+      --color-surface-alt: #f3f2f1;
+      --color-text: #323130;
+      --color-text-secondary: #605e5c;
+      --color-text-light: #a19f9d;
+      --color-border: #edebe9;
+      --color-status-ready: #107c10;
+      --color-status-ready-bg: #dff6dd;
+      --color-accent-orange: #ca5010;
+      --color-accent-purple: #8764b8;
+      --color-accent-teal: #008272;
+      --shadow-card: 0 1.6px 3.6px rgba(0,0,0,0.06), 0 0.3px 0.9px rgba(0,0,0,0.04);
+      --shadow-card-hover: 0 3.2px 7.2px rgba(0,0,0,0.10), 0 0.6px 1.8px rgba(0,0,0,0.06);
+      --shadow-elevated: 0 6.4px 14.4px rgba(0,0,0,0.12), 0 1.2px 3.6px rgba(0,0,0,0.08);
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --font-base: "Segoe UI", -apple-system, BlinkMacSystemFont, "Roboto", "Helvetica Neue", sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-base);
+      background: var(--color-bg);
+      color: var(--color-text);
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    a { color: var(--color-primary); text-decoration: none; }
+    a:hover { color: var(--color-primary-dark); text-decoration: underline; }
+
+    /* Skip to content */
+    .skip-link {
+      position: absolute; top: -100px; left: 16px;
+      background: var(--color-primary); color: #fff;
+      padding: 8px 16px; border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+      z-index: 200; font-weight: 600; font-size: 14px;
+      transition: top 0.2s;
+    }
+    .skip-link:focus { top: 0; text-decoration: none; color: #fff; }
+
+    /* Header */
+    .header {
+      background: var(--color-surface);
+      border-bottom: 1px solid var(--color-border);
+      box-shadow: var(--shadow-card);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .header__content {
+      display: flex; align-items: center;
+      max-width: 1400px; margin: 0 auto;
+      padding: 16px 32px; gap: 12px;
+    }
+    .header__logo { font-size: 28px; }
+    .header__title { font-size: 20px; font-weight: 600; color: var(--color-text); }
+    .header__subtitle {
+      color: var(--color-text-secondary);
+      border-left: 1px solid var(--color-border);
+      padding-left: 12px; font-size: 14px;
+    }
+    .header__nav {
+      margin-left: auto; display: flex; gap: 8px;
+    }
+    .header__nav-link {
+      padding: 8px 14px; border-radius: var(--radius-md);
+      font-size: 13px; font-weight: 500;
+      color: var(--color-text-secondary);
+      transition: all 0.15s;
+    }
+    .header__nav-link:hover {
+      background: var(--color-surface-alt);
+      color: var(--color-text); text-decoration: none;
+    }
+
+    /* Main */
+    .main-content {
+      max-width: 960px; margin: 0 auto; padding: 40px 32px;
+    }
+
+    /* Hero */
+    .hero { margin-bottom: 40px; text-align: center; }
+    .hero__icon { font-size: 56px; margin-bottom: 16px; }
+    .hero__title {
+      font-size: 32px; font-weight: 700; color: var(--color-text);
+      margin-bottom: 12px;
+    }
+    .hero__lead {
+      font-size: 17px; color: var(--color-text-secondary);
+      max-width: 700px; margin: 0 auto 8px; line-height: 1.6;
+    }
+    .hero__schedule {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--color-primary-light); color: var(--color-primary-dark);
+      padding: 8px 20px; border-radius: 24px;
+      font-size: 14px; font-weight: 600; margin-top: 12px;
+    }
+
+    /* Session cards */
+    .sessions-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px; margin-bottom: 48px;
+    }
+    @media (max-width: 860px) {
+      .sessions-grid { grid-template-columns: 1fr; }
+    }
+
+    .session-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      padding: 0; overflow: hidden;
+      transition: all 0.2s;
+      display: flex; flex-direction: column;
+    }
+    .session-card:hover {
+      box-shadow: var(--shadow-card-hover);
+      border-color: var(--color-primary-light);
+      transform: translateY(-3px);
+    }
+
+    .session-card__header {
+      background: linear-gradient(135deg, #0078d4 0%, #005a9e 100%);
+      color: #fff; padding: 20px 24px;
+      text-align: center;
+    }
+    .session-card__date-label {
+      font-size: 12px; text-transform: uppercase;
+      letter-spacing: 1.5px; opacity: 0.85; font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .session-card__date {
+      font-size: 28px; font-weight: 700; margin-bottom: 2px;
+    }
+    .session-card__day {
+      font-size: 14px; opacity: 0.9; font-weight: 500;
+    }
+
+    .session-card__body { padding: 24px; flex: 1; }
+    .session-card__time {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 15px; font-weight: 600; color: var(--color-text);
+      margin-bottom: 12px;
+    }
+    .session-card__time-icon { font-size: 18px; }
+    .session-card__detail {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 13px; color: var(--color-text-secondary);
+      margin-bottom: 6px;
+    }
+
+    .session-card__footer { padding: 0 24px 24px; }
+    .session-card__join-btn {
+      display: flex; align-items: center; justify-content: center;
+      gap: 8px; width: 100%;
+      background: var(--color-primary); color: #fff;
+      border: none; border-radius: var(--radius-md);
+      padding: 12px 20px; font-size: 15px; font-weight: 600;
+      font-family: var(--font-base);
+      cursor: pointer; transition: all 0.15s;
+      text-decoration: none;
+    }
+    .session-card__join-btn:hover {
+      background: var(--color-primary-dark); color: #fff;
+      text-decoration: none; transform: scale(1.02);
+    }
+    .session-card__join-btn:focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 2px;
+    }
+
+    /* What to Expect */
+    .section { margin-bottom: 48px; }
+    .section__title {
+      font-size: 22px; font-weight: 700; color: var(--color-text);
+      margin-bottom: 8px;
+    }
+    .section__subtitle {
+      font-size: 14px; color: var(--color-text-secondary);
+      margin-bottom: 24px; line-height: 1.5;
+    }
+
+    .expect-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 640px) {
+      .expect-grid { grid-template-columns: 1fr; }
+    }
+    .expect-item {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      display: flex; align-items: flex-start; gap: 14px;
+      transition: box-shadow 0.15s;
+    }
+    .expect-item:hover { box-shadow: var(--shadow-card); }
+    .expect-item__icon { font-size: 24px; flex-shrink: 0; margin-top: 2px; }
+    .expect-item__text h4 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+    .expect-item__text p { font-size: 13px; color: var(--color-text-secondary); line-height: 1.5; }
+
+    /* Who Should Attend */
+    .audience-list {
+      list-style: none; padding: 0;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .audience-list li {
+      background: var(--color-surface);
+      border-left: 3px solid var(--color-primary);
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-card);
+      padding: 12px 16px;
+      font-size: 14px; color: var(--color-text-secondary);
+    }
+    .audience-list li strong { color: var(--color-text); }
+
+    /* Meeting Details */
+    .meeting-details {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 24px 28px;
+    }
+    .meeting-details__title {
+      font-size: 16px; font-weight: 600; margin-bottom: 16px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .meeting-details__row {
+      display: flex; align-items: center; gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--color-border);
+      font-size: 14px;
+    }
+    .meeting-details__row:last-child { border-bottom: none; }
+    .meeting-details__label {
+      color: var(--color-text-secondary);
+      min-width: 120px; font-weight: 500;
+    }
+    .meeting-details__value { color: var(--color-text); font-weight: 600; }
+    .meeting-details__value a { font-weight: 600; }
+
+    /* Next step callout */
+    .next-step {
+      background: linear-gradient(135deg, #f0f6ff 0%, #e8f4f8 100%);
+      border: 1px solid var(--color-primary-light);
+      border-radius: var(--radius-lg);
+      padding: 28px 32px;
+      text-align: center;
+    }
+    .next-step__icon { font-size: 36px; margin-bottom: 8px; }
+    .next-step__title { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+    .next-step__text {
+      font-size: 14px; color: var(--color-text-secondary);
+      max-width: 600px; margin: 0 auto; line-height: 1.6;
+    }
+
+    /* Footer */
+    .footer {
+      border-top: 1px solid var(--color-border);
+      text-align: center; padding: 20px 32px;
+      font-size: 12px; color: var(--color-text-light);
+    }
+    .footer a { color: var(--color-text-secondary); }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <header class="header" role="banner">
+    <div class="header__content">
+      <span class="header__logo" aria-hidden="true">🏕️</span>
+      <span class="header__title">Camp AIR</span>
+      <span class="header__subtitle">Onboarding Office Hours</span>
+      <nav class="header__nav" aria-label="Quick links">
+        <a href="https://nowlents.github.io/campAIR-WFA/" class="header__nav-link">Camp AIR Content</a>
+        <a href="https://jillethelbah.github.io/camp-air-in-a-box-v3/" class="header__nav-link">Camp AIR in a Box</a>
+        <a href="https://jillethelbah.github.io/camp-air-learning-hub/" class="header__nav-link">Learning Hub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="main-content" role="main">
+
+    <!-- Hero -->
+    <div class="hero">
+      <div class="hero__icon" aria-hidden="true">🎯</div>
+      <h1 class="hero__title">Running Camp AIR: Getting Started</h1>
+      <p class="hero__lead">
+        Interested in bringing Camp AIR to your team or organization? Join an onboarding session to learn what it takes to plan, launch, and facilitate a successful Camp AIR experience.
+      </p>
+      <div class="hero__schedule" aria-label="Schedule: Every other Wednesday, 10:05 AM – 11:00 AM Pacific Time">
+        <span aria-hidden="true">📅</span>
+        Every other Wednesday &nbsp;·&nbsp; 10:05 AM – 11:00 AM PT
+      </div>
+    </div>
+
+    <!-- Session Cards -->
+    <h2 class="section__title" style="text-align:center; margin-bottom:24px;">Choose a Session</h2>
+    <div class="sessions-grid">
+
+      <!-- July 29 -->
+      <div class="session-card">
+        <div class="session-card__header">
+          <div class="session-card__date-label">July 2026</div>
+          <div class="session-card__date">29</div>
+          <div class="session-card__day">Tuesday</div>
+        </div>
+        <div class="session-card__body">
+          <div class="session-card__time">
+            <span class="session-card__time-icon" aria-hidden="true">🕐</span>
+            10:05 AM – 11:00 AM PT
+          </div>
+          <div class="session-card__detail">
+            <span aria-hidden="true">📍</span> Microsoft Teams Meeting
+          </div>
+          <div class="session-card__detail">
+            <span aria-hidden="true">⏱️</span> 55 minutes
+          </div>
+        </div>
+        <div class="session-card__footer">
+          <a href="https://teams.microsoft.com/meet/256965566917945?p=AXR3Fl0LJkjZCF5xhf" target="_blank" rel="noopener" class="session-card__join-btn" aria-label="Join the July 29 onboarding session on Microsoft Teams">
+            <span aria-hidden="true">📹</span> Join Session
+          </a>
+        </div>
+      </div>
+
+      <!-- Aug 12 -->
+      <div class="session-card">
+        <div class="session-card__header">
+          <div class="session-card__date-label">August 2026</div>
+          <div class="session-card__date">12</div>
+          <div class="session-card__day">Wednesday</div>
+        </div>
+        <div class="session-card__body">
+          <div class="session-card__time">
+            <span class="session-card__time-icon" aria-hidden="true">🕐</span>
+            10:05 AM – 11:00 AM PT
+          </div>
+          <div class="session-card__detail">
+            <span aria-hidden="true">📍</span> Microsoft Teams Meeting
+          </div>
+          <div class="session-card__detail">
+            <span aria-hidden="true">⏱️</span> 55 minutes
+          </div>
+        </div>
+        <div class="session-card__footer">
+          <a href="https://teams.microsoft.com/meet/256965566917945?p=AXR3Fl0LJkjZCF5xhf" target="_blank" rel="noopener" class="session-card__join-btn" aria-label="Join the August 12 onboarding session on Microsoft Teams">
+            <span aria-hidden="true">📹</span> Join Session
+          </a>
+        </div>
+      </div>
+
+      <!-- Aug 26 -->
+      <div class="session-card">
+        <div class="session-card__header">
+          <div class="session-card__date-label">August 2026</div>
+          <div class="session-card__date">26</div>
+          <div class="session-card__day">Wednesday</div>
+        </div>
+        <div class="session-card__body">
+          <div class="session-card__time">
+            <span class="session-card__time-icon" aria-hidden="true">🕐</span>
+            10:05 AM – 11:00 AM PT
+          </div>
+          <div class="session-card__detail">
+            <span aria-hidden="true">📍</span> Microsoft Teams Meeting
+          </div>
+          <div class="session-card__detail">
+            <span aria-hidden="true">⏱️</span> 55 minutes
+          </div>
+        </div>
+        <div class="session-card__footer">
+          <a href="https://teams.microsoft.com/meet/256965566917945?p=AXR3Fl0LJkjZCF5xhf" target="_blank" rel="noopener" class="session-card__join-btn" aria-label="Join the August 26 onboarding session on Microsoft Teams">
+            <span aria-hidden="true">📹</span> Join Session
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- What to Expect -->
+    <div class="section">
+      <h2 class="section__title">What to Expect</h2>
+      <p class="section__subtitle">Each onboarding session covers everything you need to get started with Camp AIR.</p>
+      <div class="expect-grid">
+        <div class="expect-item">
+          <span class="expect-item__icon" aria-hidden="true">🏕️</span>
+          <div class="expect-item__text">
+            <h4>Camp AIR Experience & Outcomes</h4>
+            <p>Learn how Camp AIR transforms team AI adoption through the 3-week Learn → Hack → Demo structure.</p>
+          </div>
+        </div>
+        <div class="expect-item">
+          <span class="expect-item__icon" aria-hidden="true">👥</span>
+          <div class="expect-item__text">
+            <h4>Roles & Responsibilities</h4>
+            <p>Understand the roles of sponsors, cohort and camp coaches, and participants.</p>
+          </div>
+        </div>
+        <div class="expect-item">
+          <span class="expect-item__icon" aria-hidden="true">📋</span>
+          <div class="expect-item__text">
+            <h4>Planning Timelines & Milestones</h4>
+            <p>Walk through the 4–6 week planning horizon and key milestones for a successful camp.</p>
+          </div>
+        </div>
+        <div class="expect-item">
+          <span class="expect-item__icon" aria-hidden="true">🧰</span>
+          <div class="expect-item__text">
+            <h4>Tools, Templates & Support</h4>
+            <p>Discover the Camp AIR in a Box kit, support channels, and ongoing office hours for coaches.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Who Should Attend -->
+    <div class="section">
+      <h2 class="section__title">Who Should Attend</h2>
+      <p class="section__subtitle">These sessions are designed for anyone exploring or ready to launch a Camp AIR.</p>
+      <ul class="audience-list">
+        <li><strong>Managers & Leaders</strong> — who want to bring Camp AIR to their team or organization</li>
+        <li><strong>Learning Champions & Chiefs of Staff</strong> — who will coordinate logistics and communications</li>
+        <li><strong>Prospective Cohort Coaches</strong> — who will facilitate and lead the camp experience</li>
+        <li><strong>Anyone curious</strong> — whether you're ready to launch or simply exploring the possibility</li>
+      </ul>
+    </div>
+
+    <!-- Meeting Details -->
+    <div class="section">
+      <h2 class="section__title">Meeting Details</h2>
+      <div class="meeting-details">
+        <div class="meeting-details__title">
+          <span aria-hidden="true">📞</span> Microsoft Teams Meeting
+        </div>
+        <div class="meeting-details__row">
+          <span class="meeting-details__label">Join Link</span>
+          <span class="meeting-details__value">
+            <a href="https://teams.microsoft.com/meet/256965566917945?p=AXR3Fl0LJkjZCF5xhf" target="_blank" rel="noopener">Join on Teams</a>
+          </span>
+        </div>
+        <div class="meeting-details__row">
+          <span class="meeting-details__label">Meeting ID</span>
+          <span class="meeting-details__value">256 965 566 917 945</span>
+        </div>
+        <div class="meeting-details__row">
+          <span class="meeting-details__label">Passcode</span>
+          <span class="meeting-details__value">ts6Li2qf</span>
+        </div>
+        <div class="meeting-details__row">
+          <span class="meeting-details__label">Dial In</span>
+          <span class="meeting-details__value">
+            <a href="tel:+13238494874,,306776271#">+1 323-849-4874</a> (Los Angeles)
+          </span>
+        </div>
+        <div class="meeting-details__row">
+          <span class="meeting-details__label">Phone Conf ID</span>
+          <span class="meeting-details__value">306 776 271#</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Next Steps -->
+    <div class="next-step">
+      <div class="next-step__icon" aria-hidden="true">🚀</div>
+      <h2 class="next-step__title">Ready to run a Camp AIR?</h2>
+      <p class="next-step__text">
+        Once you've attended an onboarding session and decided to launch a camp, join our 
+        <strong>Support Office Hours (twice weekly)</strong> for ongoing guidance, planning support, and facilitation best practices. 
+        Visit the <a href="https://jillethelbah.github.io/camp-air-in-a-box-v3/">Camp AIR in a Box</a> site for the full kit.
+      </p>
+    </div>
+
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <p>
+      Camp AIR — Workforce Acceleration Team &nbsp;·&nbsp;
+      <a href="https://nowlents.github.io/campAIR-WFA/">Content Portal</a> &nbsp;·&nbsp;
+      <a href="https://jillethelbah.github.io/camp-air-in-a-box-v3/">Camp AIR in a Box</a> &nbsp;·&nbsp;
+      <a href="https://jillethelbah.github.io/camp-air-learning-hub/">Learning Hub</a>
+    </p>
+  </footer>
+</body>
+</html>

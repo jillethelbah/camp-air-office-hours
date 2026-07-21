@@ -4,17 +4,18 @@ PRODID:-//Camp AIR//Onboarding Office Hours//EN
 METHOD:PUBLISH
 BEGIN:VEVENT
 UID:camp-air-onboarding-20260812@campair.microsoft.com
+DTSTAMP:20260721T003648Z
 DTSTART:20260812T170500Z
 DTEND:20260812T180000Z
 SUMMARY:Running Camp AIR: Getting Started
-DESCRIPTION:Interested in bringing Camp AIR to your team or organization?\n\nJoin this onboarding session to learn what it takes to plan\, launch\, and facilitate a successful Camp AIR experience.\n\nDuring this session we will:\n- Review the Camp AIR experience and outcomes\n- Explain the roles of sponsors\, cohort and camp coaches\, and participants\n- Discuss planning timelines and key milestones\n- Share available tools\, templates\, and support resources\n- Answer questions about running Camp AIR in your organization\n\nJoin on Teams: https://teams.microsoft.com/meet/256965566917945?p=AXR3Fl0LJkjZCF5xhf\nMeeting ID: 256 965 566 917 945\nPasscode: ts6Li2qf
+DESCRIPTION:Join this onboarding session to learn what it takes to plan\, launch\, and facilitate a successful Camp AIR experience.\n\nJoin on Teams: https://teams.microsoft.com/meet/256965566917945?p=AXR3Fl0LJkjZCF5xhf\nMeeting ID: 256 965 566 917 945\nPasscode: ts6Li2qf
 LOCATION:Microsoft Teams Meeting
 URL:https://teams.microsoft.com/meet/256965566917945?p=AXR3Fl0LJkjZCF5xhf
 STATUS:CONFIRMED
 BEGIN:VALARM
 TRIGGER:-PT15M
 ACTION:DISPLAY
-DESCRIPTION:Reminder: Camp AIR Onboarding in 15 minutes
+DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 END:VCALENDAR
